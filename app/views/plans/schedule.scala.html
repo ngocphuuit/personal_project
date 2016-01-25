@@ -1,0 +1,57 @@
+@main("Schedule") {
+  <div class="row calendar">
+    <div class="col-md-12">
+
+      <div class="col-md-3">
+
+        <div class="input-group demo-group">
+          <input type="text" name="createEvent" class="form-control" id="write-event" placeholder="Add Event Here">
+          <span class="input-group-btn">
+            <button class="btn bg-primary btn-lg" id="create-event" type="button">Create!</button>
+          </span>
+        </div>
+
+        <select class="form-control event-color">
+          <option value="bg-info">SELECT COLOR (default Info)</option>
+          <option value="bg-info">.bg-info</option>
+          <option value="bg-success">.bg-success</option>
+          <option value="bg-danger">.bg-danger</option>
+          <option value="bg-primary">.bg-primary</option>
+        </select>
+
+
+        <div id='external-events'>
+          <ul class="list-group text-center">
+            <li data-class="bg-success" class='external-event list-group-item bg-success ' data-category="bg-success">Php</li>
+            <li data-class="bg-info" class='external-event list-group-item bg-info '>Jquery</li>
+            <li data-class="bg-success" class='external-event list-group-item bg-success '>SQL</li>
+            <li data-class="bg-danger" class='external-event list-group-item bg-danger '>Photoshop CS5</li>
+            <li data-class="bg-success" class='external-event list-group-item bg-success '>.bg-success</li>
+            <li data-class="bg-warning" class='external-event list-group-item bg-warning '>.bg-warning</li>
+            <li data-class="bg-info" class='external-event list-group-item bg-info '>.bg-info</li>
+            <li data-class="bg-danger" class='external-event list-group-item bg-danger '>.bg-danger</li>
+            <li data-class="bg-success" class='external-event list-group-item bg-success '>CSS3</li>
+            <li data-class="bg-danger" class='external-event list-group-item bg-danger list-group-item'>Event Maker</li>
+            <li data-class="bg-info" class='external-event list-group-item bg-info list-group-item'>Multiple</li>
+            <li data-class="bg-warning" class='external-event list-group-item bg-warning list-group-item'>Lorem</li>
+            <li data-class="bg-info" class='external-event list-group-item bg-success '>HTML5</li>
+            <li data-class="bg-info" class='external-event list-group-item bg-info list-group-item'>My Event </li>
+          </ul>
+        </div>
+        <div class="checkbox checkbox-success">
+          <input type='checkbox' name='drop-remove' id='drop-remove' class="styled"/>
+          <label for="drop-remove">
+            <span></span>Remove after drop
+          </label>
+        </div>
+      </div>
+        <!-- /col-md-3 -->
+
+      <div class="col-md-9">
+        <div id='calendar'></div>
+      </div>
+        <!-- /col-md-9 -->
+    </div>
+      <!-- /col-md-12 -->
+  </div>
+}

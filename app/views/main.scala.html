@@ -1,0 +1,67 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+
+        <!-- Mirrored from 104.219.251.196/~vijaytupakula/preview/piluku/profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Jul 2015 02:30:02 GMT -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+
+        <title>Piluku Admin Template</title>
+
+            <!-- <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon"> -->
+            <!-- Bootstrap CSS -->
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/material.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/style.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/animated-masonry-gallery.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/rotated-gallery.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/sweet-alerts/sweetalert.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/jtree.css")">
+
+        <script src="@routes.Assets.versioned("javascripts/jquery.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/app.js")"></script>
+
+        <script>
+            jQuery(window).load(function () {
+                $('.piluku-preloader').addClass('hidden');
+            });
+        </script>
+    </head>
+    <body>
+        <div class="piluku-preloader text-center">
+            <div class="loader">Loading...</div>
+        </div>
+        <div class="wrapper ">
+
+           @layouts.left_bar()
+
+            <!-- left-bar -->
+
+            @layouts.navbar()
+            <!-- /top-bar -->
+
+            <div class="main-content">
+                <!--row-->
+                @content
+            </div>
+
+           @layouts.right_bar()
+                <!-- /Right-bar -->
+        </div>
+            <!-- wrapper -->
+        <script src="@routes.Assets.versioned("javascripts/jquery-ui-1.10.3.custom.min.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/bootstrap.min.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/jquery.nicescroll.min.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/wow.min.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/jquery.loadmask.min.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/jquery.accordion.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/materialize.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/core.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/jquery.countTo.js")"></script>
+    </body>
+
+        <!-- Mirrored from 104.219.251.196/~vijaytupakula/preview/piluku/profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Jul 2015 02:30:27 GMT -->
+</html>
