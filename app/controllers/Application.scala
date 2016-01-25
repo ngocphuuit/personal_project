@@ -14,9 +14,8 @@ class Application extends Controller {
   def UserModel = new UserCRUD
 
   def index = Action.async {
-    UserModel.getByEmail("ngocphuasdasd.uit@gmail.com") match {
-      case users => println(users)
-      case _ => println("co ko nhi")
+    UserModel.getByEmail("ngocphu.uit@gmail.com") onSuccess  {
+      case users => for (user <- users) println(user.id)
     }
     UserModel.getAll().map(c => Ok(views.html.index(c)))
   }

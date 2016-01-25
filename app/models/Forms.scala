@@ -8,3 +8,8 @@ case class FormCreateUser(
   email: String,
   password: String
 )
+
+case class FormLogin(
+  username: String,
+  password: String
+)

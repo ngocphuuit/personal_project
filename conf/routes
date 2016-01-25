@@ -4,7 +4,8 @@
 
 # Home page
 GET     /                           controllers.Application.index
-GET     /login                      controllers.Authorize.login
+GET     /login                      controllers.Authorize.loginForm
+POST    /login                      controllers.Authorize.login
 GET     /signup                     controllers.Authorize.signup
 POST    /signup                     controllers.Authorize.store
 

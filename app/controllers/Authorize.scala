@@ -17,7 +17,7 @@ class Authorize extends Controller {
 
   def UserModel = new UserCRUD
 
-  val signUpForm = Form(
+  val formSignUp = Form(
     mapping(
       "first_name" -> text,
       "last_name" -> text,
@@ -27,11 +27,24 @@ class Authorize extends Controller {
     )(FormCreateUser.apply)(FormCreateUser.unapply)
   )
 
+  val formLogin = Form(
+    mapping(
+      "username" -> text,
+      "password" -> text
+    )(FormLogin.apply)(FormLogin.unapply)
+  )
+
   def index = Action.async {
     UserModel.getAll().map(c => Ok(views.html.index(c)))
   }
 
-  def login = Action {
+  def loginForm = Action {
+    Ok(views.html.login())
+  }
+
+  def login = Action { implicit request =>
+    val userData = formLogin.bindFromRequest.get
+    println(userData)
     Ok(views.html.login())
   }
 
@@ -40,7 +53,7 @@ class Authorize extends Controller {
   }
 
   def store = Action.async { implicit request =>
-    val userData = signUpForm.bindFromRequest.get
+    val userData = formSignUp.bindFromRequest.get
 
     val user = new User(
                 null,
