@@ -51,7 +51,11 @@ class Authorize extends Controller {
           Ok(views.html.login())
         } else {
           val user = users.get
-
+          if (BCrypt.checkpw(userData.password, user.password)) {
+            Redirect("/signup").withSession("user" -> user.email)
+          } else {
+            Ok(views.html.login())
+          }
         }
       }
       case Failure(t) => Ok(views.html.login())
