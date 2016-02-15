@@ -25,6 +25,4 @@ class UserCRUD extends HasDatabaseConfig[JdbcProfile]{
 
   def getByEmail(email: String): Future[Option[User]] = db.run(users.filter(_.email === email).result.headOption)
 
-  def getByUsernm
-
 }

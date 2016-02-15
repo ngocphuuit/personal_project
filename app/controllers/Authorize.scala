@@ -9,6 +9,7 @@ import play.api.data.Forms._
 import play.api.libs.json.Json
 import play.api.mvc._
 import org.joda.time.DateTime
+import scala.util.{Success, Failure}
 import play.api.libs.functional.syntax._
 import play.api.data.format.Formats._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -29,7 +30,7 @@ class Authorize extends Controller {
 
   val formLogin = Form(
     mapping(
-      "username" -> text,
+      "email" -> email,
       "password" -> text
     )(FormLogin.apply)(FormLogin.unapply)
   )
@@ -44,7 +45,17 @@ class Authorize extends Controller {
 
   def login = Action { implicit request =>
     val userData = formLogin.bindFromRequest.get
-    println(userData)
+    UserModel.getByEmail(userData.email) onComplete {
+      case Success(users) => {
+        if (users.isEmpty) {
+          Ok(views.html.login())
+        } else {
+          val user = users.get
+
+        }
+      }
+      case Failure(t) => Ok(views.html.login())
+    }
     Ok(views.html.login())
   }
 

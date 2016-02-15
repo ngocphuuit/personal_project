@@ -10,6 +10,6 @@ case class FormCreateUser(
 )
 
 case class FormLogin(
-  username: String,
+  email: String,
   password: String
 )
