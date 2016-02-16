@@ -2,6 +2,7 @@ package controllers
 
 import models._
 import models.crud.UserCRUD
+import commons.Authorize
 import org.mindrot.jbcrypt.BCrypt
 import play.api.data._
 import play.api.data.Forms._
@@ -13,7 +14,8 @@ class Application extends Controller {
 
   def UserModel = new UserCRUD
 
-  def index = Action.async {
+  def index = Action.async { request =>
+//    println(request.session.get("user").getOrElse("none"))
     UserModel.getByEmail("ngocphu.uit@gmail.com") onSuccess  {
       case users => for (user <- users) println(user.id)
     }

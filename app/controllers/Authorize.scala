@@ -1,17 +1,13 @@
 package controllers
 
 import org.mindrot.jbcrypt.BCrypt
-import play.api._
 import models._
 import models.crud.UserCRUD
+import commons.Authorize
 import play.api.data._
 import play.api.data.Forms._
-import play.api.libs.json.Json
 import play.api.mvc._
 import org.joda.time.DateTime
-import scala.util.{Success, Failure}
-import play.api.libs.functional.syntax._
-import play.api.data.format.Formats._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 class Authorize extends Controller {
@@ -43,27 +39,23 @@ class Authorize extends Controller {
     Ok(views.html.login())
   }
 
-  def login = Action { implicit request =>
+  def login = Action.async { implicit request =>
     val userData = formLogin.bindFromRequest.get
-    UserModel.getByEmail(userData.email) onComplete {
-      case Success(users) => {
-        if (users.isEmpty) {
-          Ok(views.html.login())
+    UserModel.getByEmail(userData.email).map { users =>
+      if (users.isEmpty) {
+        NotFound
+      } else {
+        val user = users.get
+        if (BCrypt.checkpw(userData.password, user.password)) {
+          Redirect("/").withSession("user" -> user.email)
         } else {
-          val user = users.get
-          if (BCrypt.checkpw(userData.password, user.password)) {
-            Redirect("/signup").withSession("user" -> user.email)
-          } else {
-            Ok(views.html.login())
-          }
+          Ok(views.html.login())
         }
       }
-      case Failure(t) => Ok(views.html.login())
     }
-    Ok(views.html.login())
   }
 
-  def signup = Action {
+  def signup = Authorize.Logged { request =>
     Ok(views.html.signup())
   }
 
@@ -86,4 +78,5 @@ class Authorize extends Controller {
               )
     UserModel.store(user).map(_ => Redirect("/login"))
   }
+
 }
